@@ -32,12 +32,12 @@ export function ProvidersCard() {
     },
   ] = useStore();
 
-  const [count, setCount] = createSignal();
+  const [count, setCount] = createSignal(0);
 
   const [selectedProviders, setSelectedProviders] = createStore<
     ProvidersStoreDefinition[]
   >([]);
-  const [activeProviders, setActiveProviders] = createSignal([]);
+  const [activeProviders, setActiveProviders] = createSignal<ProvidersStoreDefinition[]>([]);
 
   const onClickClose = () => {
     toggleShowProvidersCard();
@@ -75,26 +75,32 @@ export function ProvidersCard() {
 
   onMount(async () => {
     const data = await getProviders();
-    const results = data.results;
+    const results = Array.isArray(data)
+      ? data
+      : (typeof data === 'object' && data !== null && 'data' in data && Array.isArray((data as any).data))
+      ? (data as any).data
+      : (typeof data === 'object' && data !== null && 'providers' in data && Array.isArray((data as any).providers))
+      ? (data as any).providers
+      : [];
     setCount(results.length);
-    setTotalProviders(results.length);
+    setTotalProviders();
     setSelectedProviders(
       results
-        .map((o) => {
+        .map((o: any) => {
           return {
             name: o.name,
             id: o.id,
             checked:
               store.providers.length === 0
-                ? 'true'
+                ? true
                 : store.providers.includes(o.id),
             matchesQuery: true,
             bbox: o.bbox,
           };
         })
-        .sort((a, b) => (a.name.toLowerCase < b.name.toLowerCase ? -1 : 1))
+        .sort((a: any, b: any) => (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1))
     );
-    miniSearch.addAll(selectedProviders);
+    miniSearch.addAll(results);
   });
 
   createEffect(() => {

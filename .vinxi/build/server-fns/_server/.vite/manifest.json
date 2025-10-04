@@ -14,23 +14,26 @@
     "file": "assets/account-BJstEwbN.css",
     "src": "_account-BJstEwbN.css"
   },
-  "_backend-hM8sUyp6.js": {
-    "file": "assets/backend-hM8sUyp6.js",
+  "_backend-DPj8aydh.js": {
+    "file": "assets/backend-DPj8aydh.js",
     "name": "backend",
     "imports": [
       "_routing-BfDgGOS4.js"
     ]
   },
-  "_chevron_right-BfYmDe3f.css": {
-    "file": "assets/chevron_right-BfYmDe3f.css",
-    "src": "_chevron_right-BfYmDe3f.css"
-  },
-  "_chevron_right-DN1aOD5j.js": {
-    "file": "assets/chevron_right-DN1aOD5j.js",
+  "_chevron_right-6Vm1HLZJ.js": {
+    "file": "assets/chevron_right-6Vm1HLZJ.js",
     "name": "chevron_right",
+    "imports": [
+      "_maplibre-gl-Ukol7sIV.js"
+    ],
     "css": [
       "assets/chevron_right-BfYmDe3f.css"
     ]
+  },
+  "_chevron_right-BfYmDe3f.css": {
+    "file": "assets/chevron_right-BfYmDe3f.css",
+    "src": "_chevron_right-BfYmDe3f.css"
   },
   "_close-CKxkeldA.js": {
     "file": "assets/close-CKxkeldA.js",
@@ -47,9 +50,12 @@
     "file": "assets/createAsync-Dqt8Sub7.js",
     "name": "createAsync"
   },
-  "_delete_forever-CU_4vvcr.js": {
-    "file": "assets/delete_forever-CU_4vvcr.js",
-    "name": "delete_forever"
+  "_delete_forever-D7kSjnux.js": {
+    "file": "assets/delete_forever-D7kSjnux.js",
+    "name": "delete_forever",
+    "imports": [
+      "_maplibre-gl-Ukol7sIV.js"
+    ]
   },
   "_error-DKJk1ItE.js": {
     "file": "assets/error-DKJk1ItE.js",
@@ -65,51 +71,16 @@
       "assets/index-CmhxM96z.css"
     ]
   },
-  "_index-BJt-c6vQ.js": {
-    "file": "assets/index-BJt-c6vQ.js",
-    "name": "index",
-    "imports": [
-      "_user-C3LDJoBY.js",
-      "_lists-CnpuNbOq.js",
-      "_routing-BfDgGOS4.js",
-      "_components-C2CNEjd6.js"
-    ],
-    "css": [
-      "assets/index-Xcy2yRn1.css"
-    ]
-  },
-  "_index-CSH0Z-8p.css": {
-    "file": "assets/index-CSH0Z-8p.css",
-    "src": "_index-CSH0Z-8p.css"
-  },
-  "_index-CmhxM96z.css": {
-    "file": "assets/index-CmhxM96z.css",
-    "src": "_index-CmhxM96z.css"
-  },
-  "_index-D2w8b1Gc.js": {
-    "file": "assets/index-D2w8b1Gc.js",
-    "name": "index",
-    "imports": [
-      "_maplibre-gl-Ukol7sIV.js"
-    ]
-  },
-  "_index-DGFWRD0-.js": {
-    "file": "assets/index-DGFWRD0-.js",
-    "name": "index"
-  },
-  "_index-Dfr9ERti.js": {
-    "file": "assets/index-Dfr9ERti.js",
+  "_index-CeQ4gMUr.js": {
+    "file": "assets/index-CeQ4gMUr.js",
     "name": "index",
     "isDynamicEntry": true,
     "imports": [
-      "_maplibre-gl-Ukol7sIV.js",
-      "_index-D2w8b1Gc.js",
-      "_index-sk3k63l_.js",
       "_index-DGFWRD0-.js",
-      "_info-uPCLydNA.js",
-      "_index-vCJlFWMY.js",
+      "_index-D6PsHaBa.js",
+      "_index-X0SSqWS9.js",
       "_close-CKxkeldA.js",
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js",
       "_createAsync-Dqt8Sub7.js",
       "_components-C2CNEjd6.js"
@@ -119,28 +90,56 @@
       "src/components/Cards/HelpCard.tsx"
     ],
     "css": [
-      "assets/index-CSH0Z-8p.css"
+      "assets/index-FaOQPN_m.css"
     ]
+  },
+  "_index-CmhxM96z.css": {
+    "file": "assets/index-CmhxM96z.css",
+    "src": "_index-CmhxM96z.css"
+  },
+  "_index-CsFnVt-7.js": {
+    "file": "assets/index-CsFnVt-7.js",
+    "name": "index",
+    "imports": [
+      "_user-Csyx7oEn.js",
+      "_lists-CnpuNbOq.js",
+      "_routing-BfDgGOS4.js",
+      "_components-C2CNEjd6.js"
+    ],
+    "css": [
+      "assets/index-Xcy2yRn1.css"
+    ]
+  },
+  "_index-D6PsHaBa.js": {
+    "file": "assets/index-D6PsHaBa.js",
+    "name": "index",
+    "imports": [
+      "_backend-DPj8aydh.js",
+      "_lists-D96-zvNg.js"
+    ]
+  },
+  "_index-DGFWRD0-.js": {
+    "file": "assets/index-DGFWRD0-.js",
+    "name": "index"
   },
   "_index-DzzqmRPo.css": {
     "file": "assets/index-DzzqmRPo.css",
     "src": "_index-DzzqmRPo.css"
   },
+  "_index-FaOQPN_m.css": {
+    "file": "assets/index-FaOQPN_m.css",
+    "src": "_index-FaOQPN_m.css"
+  },
   "_index-MNX0u0y8.js": {
     "file": "assets/index-MNX0u0y8.js",
     "name": "index"
   },
-  "_index-Xcy2yRn1.css": {
-    "file": "assets/index-Xcy2yRn1.css",
-    "src": "_index-Xcy2yRn1.css"
-  },
-  "_index-sk3k63l_.js": {
-    "file": "assets/index-sk3k63l_.js",
+  "_index-X0SSqWS9.js": {
+    "file": "assets/index-X0SSqWS9.js",
     "name": "index",
     "imports": [
-      "_maplibre-gl-Ukol7sIV.js",
       "_index-DGFWRD0-.js",
-      "_lists-DyZr50qf.js",
+      "_lists-D96-zvNg.js",
       "_lists-CnpuNbOq.js",
       "_createAsync-Dqt8Sub7.js",
       "_components-C2CNEjd6.js"
@@ -149,13 +148,9 @@
       "assets/index-DzzqmRPo.css"
     ]
   },
-  "_index-vCJlFWMY.js": {
-    "file": "assets/index-vCJlFWMY.js",
-    "name": "index",
-    "imports": [
-      "_backend-hM8sUyp6.js",
-      "_lists-DyZr50qf.js"
-    ]
+  "_index-Xcy2yRn1.css": {
+    "file": "assets/index-Xcy2yRn1.css",
+    "src": "_index-Xcy2yRn1.css"
   },
   "_info-uPCLydNA.js": {
     "file": "assets/info-uPCLydNA.js",
@@ -169,16 +164,16 @@
     "file": "assets/lists-CnpuNbOq.js",
     "name": "lists"
   },
+  "_lists-D96-zvNg.js": {
+    "file": "assets/lists-D96-zvNg.js",
+    "name": "lists",
+    "imports": [
+      "_backend-DPj8aydh.js"
+    ]
+  },
   "_lists-DHeW1hLt.css": {
     "file": "assets/lists-DHeW1hLt.css",
     "src": "_lists-DHeW1hLt.css"
-  },
-  "_lists-DyZr50qf.js": {
-    "file": "assets/lists-DyZr50qf.js",
-    "name": "lists",
-    "imports": [
-      "_backend-hM8sUyp6.js"
-    ]
   },
   "_location-Dk-NozFe.css": {
     "file": "assets/location-Dk-NozFe.css",
@@ -211,14 +206,14 @@
     "file": "assets/routing-BfDgGOS4.js",
     "name": "routing"
   },
-  "_server-fns-DRPLjzBe.js": {
-    "file": "assets/server-fns-DRPLjzBe.js",
+  "_server-fns-De_oUqWX.js": {
+    "file": "assets/server-fns-De_oUqWX.js",
     "name": "server-fns",
     "imports": [
-      "_backend-hM8sUyp6.js",
-      "_user-C3LDJoBY.js",
-      "_lists-DyZr50qf.js",
-      "_index-vCJlFWMY.js"
+      "_backend-DPj8aydh.js",
+      "_user-Csyx7oEn.js",
+      "_lists-D96-zvNg.js",
+      "_index-D6PsHaBa.js"
     ],
     "dynamicImports": [
       "src/routes/(root)/account.tsx?pick=default&pick=$css",
@@ -281,20 +276,20 @@
       "src/auth/session.ts?tsr-directive-use-server=",
       "src/auth/session.ts?tsr-directive-use-server=",
       "src/auth/session.ts?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
-      "src/client/index.tsx?tsr-directive-use-server=",
       "src/lib/password.ts?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
+      "src/client/index.tsx?tsr-directive-use-server=",
       "src/db/account.ts?tsr-directive-use-server=",
       "src/db/account.ts?tsr-directive-use-server=",
       "src/app.tsx"
@@ -308,11 +303,11 @@
       "assets/register-Ci8yPJPh.css"
     ]
   },
-  "_user-C3LDJoBY.js": {
-    "file": "assets/user-C3LDJoBY.js",
+  "_user-Csyx7oEn.js": {
+    "file": "assets/user-Csyx7oEn.js",
     "name": "user",
     "imports": [
-      "_backend-hM8sUyp6.js"
+      "_backend-DPj8aydh.js"
     ]
   },
   "_warning-B-bYupKZ.js": {
@@ -323,140 +318,140 @@
     "file": "assets/warning-C9UEnkBy.js",
     "name": "warning"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff": {
     "file": "assets/space-grotesk-latin-300-normal-Byd1NLsn.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff2": {
     "file": "assets/space-grotesk-latin-300-normal-DiSf0yqz.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff": {
     "file": "assets/space-grotesk-latin-400-normal-BnQMeOim.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff2": {
     "file": "assets/space-grotesk-latin-400-normal-CJ-V5oYT.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff": {
     "file": "assets/space-grotesk-latin-500-normal-CNSSEhBt.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2": {
     "file": "assets/space-grotesk-latin-500-normal-lFbtlQH6.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff": {
     "file": "assets/space-grotesk-latin-600-normal-BflQw4A9.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff2": {
     "file": "assets/space-grotesk-latin-600-normal-DjKNqYRj.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff": {
     "file": "assets/space-grotesk-latin-700-normal-CwsQ-cCU.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2": {
     "file": "assets/space-grotesk-latin-700-normal-RjhwGPKo.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-300-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-300-normal.woff": {
     "file": "assets/space-grotesk-latin-ext-300-normal-CxWNGEn7.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-300-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-300-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-300-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-300-normal.woff2": {
     "file": "assets/space-grotesk-latin-ext-300-normal-4ZO_JR7W.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-300-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-300-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-400-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-400-normal.woff": {
     "file": "assets/space-grotesk-latin-ext-400-normal-DRPE3kg4.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-400-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-400-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-400-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-400-normal.woff2": {
     "file": "assets/space-grotesk-latin-ext-400-normal-CfP_5XZW.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-400-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-400-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-500-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-500-normal.woff": {
     "file": "assets/space-grotesk-latin-ext-500-normal-3dgZTiw9.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-500-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-500-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-500-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-500-normal.woff2": {
     "file": "assets/space-grotesk-latin-ext-500-normal-DUe3BAxM.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-500-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-500-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-600-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-600-normal.woff": {
     "file": "assets/space-grotesk-latin-ext-600-normal-VcznFIpX.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-600-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-600-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-600-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-600-normal.woff2": {
     "file": "assets/space-grotesk-latin-ext-600-normal-DxxdqCpr.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-600-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-600-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-700-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-700-normal.woff": {
     "file": "assets/space-grotesk-latin-ext-700-normal-HVCqSBdx.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-700-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-700-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-700-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-700-normal.woff2": {
     "file": "assets/space-grotesk-latin-ext-700-normal-BQnZhY3m.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-700-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-ext-700-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-300-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-300-normal.woff": {
     "file": "assets/space-grotesk-vietnamese-300-normal-F-NWLUie.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-300-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-300-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-300-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-300-normal.woff2": {
     "file": "assets/space-grotesk-vietnamese-300-normal-B9OJnXKM.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-300-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-300-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-400-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-400-normal.woff": {
     "file": "assets/space-grotesk-vietnamese-400-normal-BIWiOVfw.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-400-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-400-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-400-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-400-normal.woff2": {
     "file": "assets/space-grotesk-vietnamese-400-normal-B7xT_GF5.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-400-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-400-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-500-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-500-normal.woff": {
     "file": "assets/space-grotesk-vietnamese-500-normal-BTqKIpxg.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-500-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-500-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-500-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-500-normal.woff2": {
     "file": "assets/space-grotesk-vietnamese-500-normal-BmEvtly_.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-500-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-500-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-600-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-600-normal.woff": {
     "file": "assets/space-grotesk-vietnamese-600-normal-D6zpsUhD.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-600-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-600-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-600-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-600-normal.woff2": {
     "file": "assets/space-grotesk-vietnamese-600-normal-DUi7WF5p.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-600-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-600-normal.woff2"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-700-normal.woff": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-700-normal.woff": {
     "file": "assets/space-grotesk-vietnamese-700-normal-Duxec5Rn.woff",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-700-normal.woff"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-700-normal.woff"
   },
-  "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-700-normal.woff2": {
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-700-normal.woff2": {
     "file": "assets/space-grotesk-vietnamese-700-normal-DMty7AZE.woff2",
-    "src": "node_modules/.pnpm/@fontsource+space-grotesk@5.2.10/node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-700-normal.woff2"
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-vietnamese-700-normal.woff2"
   },
   "src/app.tsx": {
-    "file": "assets/app-Cy7TjW0H.js",
+    "file": "assets/app-CkmjSLN5.js",
     "name": "app",
     "src": "src/app.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_server-fns-DRPLjzBe.js",
+      "_server-fns-De_oUqWX.js",
       "_index-DGFWRD0-.js",
       "_index-MNX0u0y8.js",
       "_routing-BfDgGOS4.js",
-      "_backend-hM8sUyp6.js",
-      "_user-C3LDJoBY.js",
-      "_lists-DyZr50qf.js",
-      "_index-vCJlFWMY.js"
+      "_backend-DPj8aydh.js",
+      "_user-Csyx7oEn.js",
+      "_lists-D96-zvNg.js",
+      "_index-D6PsHaBa.js"
     ],
     "css": [
       "assets/app-DrFAHbp_.css",
@@ -501,57 +496,54 @@
     ]
   },
   "src/auth/session.ts?tsr-directive-use-server=": {
-    "file": "assets/session-CQFvP44J.js",
+    "file": "assets/session-C3IC3mVq.js",
     "name": "session",
     "src": "src/auth/session.ts?tsr-directive-use-server=",
     "isDynamicEntry": true,
     "imports": [
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js"
     ]
   },
   "src/auth/user.ts?tsr-directive-use-server=": {
-    "file": "assets/user-BdSYML7M.js",
+    "file": "assets/user-FdhNLA3T.js",
     "name": "user",
     "src": "src/auth/user.ts?tsr-directive-use-server=",
     "isDynamicEntry": true,
     "imports": [
-      "_backend-hM8sUyp6.js",
-      "_user-C3LDJoBY.js",
+      "_backend-DPj8aydh.js",
+      "_user-Csyx7oEn.js",
       "_routing-BfDgGOS4.js"
     ]
   },
   "src/client/index.tsx?tsr-directive-use-server=": {
-    "file": "assets/index-CwbHSB6y.js",
+    "file": "assets/index-dwGdcpmQ.js",
     "name": "index",
     "src": "src/client/index.tsx?tsr-directive-use-server=",
     "isDynamicEntry": true,
     "imports": [
-      "_backend-hM8sUyp6.js",
-      "_lists-DyZr50qf.js",
+      "_backend-DPj8aydh.js",
+      "_lists-D96-zvNg.js",
       "_routing-BfDgGOS4.js"
     ]
   },
   "src/components/Cards/HelpCard.tsx": {
-    "file": "assets/HelpCard-isHD4afO.js",
+    "file": "assets/HelpCard-Be8rMajA.js",
     "name": "HelpCard",
     "src": "src/components/Cards/HelpCard.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_index-DGFWRD0-.js",
-      "_index-Dfr9ERti.js",
+      "_index-CeQ4gMUr.js",
       "_close-CKxkeldA.js",
-      "_maplibre-gl-Ukol7sIV.js",
-      "_index-D2w8b1Gc.js",
-      "_index-sk3k63l_.js",
-      "_lists-DyZr50qf.js",
-      "_backend-hM8sUyp6.js",
+      "_index-D6PsHaBa.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js",
+      "_lists-D96-zvNg.js",
+      "_index-X0SSqWS9.js",
       "_lists-CnpuNbOq.js",
       "_createAsync-Dqt8Sub7.js",
-      "_components-C2CNEjd6.js",
-      "_info-uPCLydNA.js",
-      "_index-vCJlFWMY.js"
+      "_components-C2CNEjd6.js"
     ],
     "css": [
       "assets/HelpCard-BjRc1Fg-.css"
@@ -572,33 +564,33 @@
     ]
   },
   "src/db/account.ts?tsr-directive-use-server=": {
-    "file": "assets/account-BEQaGol1.js",
+    "file": "assets/account-DN-ooUo5.js",
     "name": "account",
     "src": "src/db/account.ts?tsr-directive-use-server=",
     "isDynamicEntry": true,
     "imports": [
-      "_backend-hM8sUyp6.js",
-      "_user-C3LDJoBY.js",
+      "_backend-DPj8aydh.js",
+      "_user-Csyx7oEn.js",
       "_routing-BfDgGOS4.js"
     ]
   },
   "src/db/lists.ts?tsr-directive-use-server=": {
-    "file": "assets/lists-CIT8o9CA.js",
+    "file": "assets/lists-BKV7yMq4.js",
     "name": "lists",
     "src": "src/db/lists.ts?tsr-directive-use-server=",
     "isDynamicEntry": true,
     "imports": [
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js"
     ]
   },
   "src/lib/password.ts?tsr-directive-use-server=": {
-    "file": "assets/password-Fi9vHXSI.js",
+    "file": "assets/password-YRCJnZOg.js",
     "name": "password",
     "src": "src/lib/password.ts?tsr-directive-use-server=",
     "isDynamicEntry": true,
     "imports": [
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js"
     ]
   },
@@ -609,11 +601,11 @@
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_backend-hM8sUyp6.js",
-      "_index-BJt-c6vQ.js",
+      "_backend-DPj8aydh.js",
+      "_index-CsFnVt-7.js",
       "_createAsync-Dqt8Sub7.js",
       "_routing-BfDgGOS4.js",
-      "_user-C3LDJoBY.js",
+      "_user-Csyx7oEn.js",
       "_lists-CnpuNbOq.js",
       "_components-C2CNEjd6.js"
     ]
@@ -626,8 +618,8 @@
     "isDynamicEntry": true,
     "imports": [
       "_index-DGFWRD0-.js",
-      "_backend-hM8sUyp6.js",
-      "_user-C3LDJoBY.js",
+      "_backend-DPj8aydh.js",
+      "_user-Csyx7oEn.js",
       "_close-CKxkeldA.js",
       "_createAsync-Dqt8Sub7.js",
       "_routing-BfDgGOS4.js"
@@ -659,10 +651,10 @@
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_user-C3LDJoBY.js",
+      "_user-Csyx7oEn.js",
       "_error-DKJk1ItE.js",
       "_routing-BfDgGOS4.js",
-      "_backend-hM8sUyp6.js"
+      "_backend-DPj8aydh.js"
     ],
     "css": [
       "assets/email-verified-9bT6V3xu.css"
@@ -675,9 +667,9 @@
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_user-C3LDJoBY.js",
+      "_user-Csyx7oEn.js",
       "_error-DKJk1ItE.js",
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js"
     ],
     "css": [
@@ -703,19 +695,16 @@
     "src": "src/routes/(root)/index.tsx?pick=default&pick=$css",
     "isEntry": true,
     "imports": [
-      "_index-Dfr9ERti.js",
+      "_index-CeQ4gMUr.js",
       "_index-DGFWRD0-.js",
       "_routing-BfDgGOS4.js",
-      "_maplibre-gl-Ukol7sIV.js",
-      "_index-D2w8b1Gc.js",
-      "_index-sk3k63l_.js",
-      "_lists-DyZr50qf.js",
-      "_backend-hM8sUyp6.js",
+      "_index-D6PsHaBa.js",
+      "_backend-DPj8aydh.js",
+      "_lists-D96-zvNg.js",
+      "_index-X0SSqWS9.js",
       "_lists-CnpuNbOq.js",
       "_createAsync-Dqt8Sub7.js",
       "_components-C2CNEjd6.js",
-      "_info-uPCLydNA.js",
-      "_index-vCJlFWMY.js",
       "_close-CKxkeldA.js"
     ]
   },
@@ -728,14 +717,13 @@
     "imports": [
       "_index-DGFWRD0-.js",
       "_maplibre-gl-Ukol7sIV.js",
-      "_index-D2w8b1Gc.js",
-      "_delete_forever-CU_4vvcr.js",
+      "_delete_forever-D7kSjnux.js",
       "_components-C2CNEjd6.js",
-      "_lists-DyZr50qf.js",
+      "_lists-D96-zvNg.js",
       "_close-CKxkeldA.js",
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_warning-C9UEnkBy.js",
-      "_user-C3LDJoBY.js",
+      "_user-Csyx7oEn.js",
       "_createAsync-Dqt8Sub7.js",
       "_routing-BfDgGOS4.js"
     ],
@@ -753,19 +741,18 @@
     "isDynamicEntry": true,
     "imports": [
       "_maplibre-gl-Ukol7sIV.js",
-      "_index-D2w8b1Gc.js",
-      "_index-sk3k63l_.js",
+      "_delete_forever-D7kSjnux.js",
+      "_chevron_right-6Vm1HLZJ.js",
       "_index-DGFWRD0-.js",
+      "_index-X0SSqWS9.js",
       "_components-C2CNEjd6.js",
-      "_chevron_right-DN1aOD5j.js",
-      "_index-vCJlFWMY.js",
-      "_delete_forever-CU_4vvcr.js",
+      "_index-D6PsHaBa.js",
       "_close-CKxkeldA.js",
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js",
       "_createAsync-Dqt8Sub7.js",
-      "_lists-DyZr50qf.js",
-      "_user-C3LDJoBY.js",
+      "_lists-D96-zvNg.js",
+      "_user-Csyx7oEn.js",
       "_lists-CnpuNbOq.js"
     ],
     "css": [
@@ -781,17 +768,17 @@
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-sk3k63l_.js",
+      "_index-X0SSqWS9.js",
       "_maplibre-gl-Ukol7sIV.js",
-      "_lists-DyZr50qf.js",
+      "_chevron_right-6Vm1HLZJ.js",
+      "_lists-D96-zvNg.js",
       "_routing-BfDgGOS4.js",
       "_createAsync-Dqt8Sub7.js",
       "_components-C2CNEjd6.js",
-      "_index-vCJlFWMY.js",
-      "_chevron_right-DN1aOD5j.js",
+      "_index-D6PsHaBa.js",
       "_index-MNX0u0y8.js",
       "_index-DGFWRD0-.js",
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_NotFoundMessage-CuXE0hYO.js",
       "_info-uPCLydNA.js",
       "_lists-CnpuNbOq.js"
@@ -808,11 +795,11 @@
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_user-C3LDJoBY.js",
+      "_user-Csyx7oEn.js",
       "_error-DKJk1ItE.js",
       "_routing-BfDgGOS4.js",
       "_createAsync-Dqt8Sub7.js",
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_components-C2CNEjd6.js"
     ],
     "css": [
@@ -826,11 +813,11 @@
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_user-C3LDJoBY.js",
+      "_user-Csyx7oEn.js",
       "_index-BHjO_jfL.js",
       "_warning-C9UEnkBy.js",
       "_routing-BfDgGOS4.js",
-      "_backend-hM8sUyp6.js"
+      "_backend-DPj8aydh.js"
     ],
     "css": [
       "assets/new-password-CuBxQ7WW.css"
@@ -854,10 +841,10 @@
     "isDynamicEntry": true,
     "imports": [
       "_index-BHjO_jfL.js",
-      "_user-C3LDJoBY.js",
+      "_user-Csyx7oEn.js",
       "_routing-BfDgGOS4.js",
       "_createAsync-Dqt8Sub7.js",
-      "_backend-hM8sUyp6.js",
+      "_backend-DPj8aydh.js",
       "_components-C2CNEjd6.js",
       "_warning-C9UEnkBy.js"
     ],
@@ -885,10 +872,10 @@
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_user-C3LDJoBY.js",
+      "_user-Csyx7oEn.js",
       "_routing-BfDgGOS4.js",
       "_createAsync-Dqt8Sub7.js",
-      "_backend-hM8sUyp6.js"
+      "_backend-DPj8aydh.js"
     ]
   },
   "src/routes/[...404].jsx?pick=default&pick=$css": {
@@ -899,9 +886,9 @@
     "isDynamicEntry": true,
     "imports": [
       "_NotFoundMessage-CuXE0hYO.js",
-      "_index-BJt-c6vQ.js",
-      "_user-C3LDJoBY.js",
-      "_backend-hM8sUyp6.js",
+      "_index-CsFnVt-7.js",
+      "_user-Csyx7oEn.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js",
       "_lists-CnpuNbOq.js",
       "_components-C2CNEjd6.js"
@@ -913,12 +900,12 @@
     "src": "virtual:$vinxi/handler/server-fns",
     "isEntry": true,
     "imports": [
-      "_server-fns-DRPLjzBe.js",
-      "_backend-hM8sUyp6.js",
+      "_server-fns-De_oUqWX.js",
+      "_backend-DPj8aydh.js",
       "_routing-BfDgGOS4.js",
-      "_user-C3LDJoBY.js",
-      "_lists-DyZr50qf.js",
-      "_index-vCJlFWMY.js"
+      "_user-Csyx7oEn.js",
+      "_lists-D96-zvNg.js",
+      "_index-D6PsHaBa.js"
     ],
     "css": [
       "assets/account-BJstEwbN.css",

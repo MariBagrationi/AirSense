@@ -11,6 +11,7 @@ import MD5 from 'crypto-js/md5';
 import { parseNotificationMarkdown } from '~/components/Cards/utils';
 
 export default function Home() {
+
   const showNotification = JSON.parse(
     import.meta.env.VITE_SHOW_NOTIFICATION || false
   );
@@ -135,21 +136,22 @@ export default function Home() {
   });
 
   return (
-    <>
-      {
-        <Show when={showNotification && store.showNotificationCard}>
-          <NotificationCard
-            notificationType={notificationType}
-            notificationTitle={notificationTitle}
-            notificationContent={notificationContent}
-            dismissedKey={dismissedKey}
-          />
-        </Show>
-      }
-      <HelpCard content={store.helpContent} title="Help" />
+    <div class="index-container">
       <Map />
+      <Show when={showNotification && store.showNotificationCard}>
+        <NotificationCard
+          notificationType={notificationType}
+          notificationTitle={notificationTitle}
+          notificationContent={notificationContent}
+          dismissedKey={dismissedKey}
+        />
+      </Show>
+
+      <HelpCard content={store.helpContent} title="Help" />
+
       <FlipCard />
       <LocationDetailCard />
-    </>
+    </div>
   );
+
 }

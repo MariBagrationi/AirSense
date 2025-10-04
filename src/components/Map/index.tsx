@@ -4,10 +4,10 @@ import { useMapContext } from 'solid-map-gl';
 import * as maplibre from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useStore } from '~/stores';
-
 import { Geocoder } from '../Geocoder';
-import { createEffect, createSignal } from 'solid-js';
-
+import { createEffect } from 'solid-js';
+import { createSignal } from 'solid-js';
+import GradientOverlay from '../GradientOverlay';
 import '~/assets/scss/components/map.scss';
 import InfoIcon from '~/assets/imgs/svgs/info.svg';
 
@@ -35,13 +35,35 @@ function Bounds() {
 
 export function Map() {
   const [store, { setSelectedLocationsId, setViewport }] = useStore();
+  const [selectedPoint, setSelectedPoint] = createSignal<{lat: number, lng: number} | null>(null);
 
   function getFeature(e: any) {
     const features = e.target.queryRenderedFeatures(e.point);
-    const locationsId = features[0].properties.locations_id;
-    setSelectedLocationsId(locationsId);
-    return features[0].geometry.coordinates;
+    if (features.length > 0 && features[0].properties) {
+      const locationsId = features[0].properties.locations_id;
+      setSelectedLocationsId(locationsId);
+      
+      // Set the selected point for the GradientOverlay
+      const coords = features[0].geometry.coordinates;
+      if (coords) {
+        setSelectedPoint({
+          lng: coords[0],
+          lat: coords[1]
+        });
+        
+        // Make sure the GradientOverlay is visible when a location is selected
+        console.log("Selected location:", coords);
+      }
+      
+      return coords;
+    }
+    return null;
   }
+
+  const handleTimeChange = (timeOffset: number) => {
+    // You can implement logic here to update the map data based on the time offset
+    console.log(`Updating map data for time offset: +${timeOffset}h`);
+  };
 
   const calculateIsMonitor = (): boolean => {
     if (!store.showMonitors && store.showAirSensors) {
@@ -79,25 +101,28 @@ export function Map() {
         class="map"
         mapLib={maplibre}
         options={{
-          accessToken: import.meta.env.VITE_MAPBOX_ACCESS_TOKEN,
           style: import.meta.env.VITE_MAP_STYLE,
           touchZoomRotate: false,
           dragRotate: false,
           minZoom: 1,
           maxZoom: 20,
           hash: true,
-          attributionControl: false,
+          attributionControl: false
         }}
-        onMouseOver={{
-          locations: (e) => (e.target.getCanvas().style.cursor = 'pointer'),
+        onError={(e) => {
+          console.error("Map error:", e);
         }}
-        onMouseLeave={{
-          locations: (e) => (e.target.getCanvas().style.cursor = ''),
+        onLoad={(e) => {
+          console.log("Map loaded successfully");
+        }}
+        onMouseMove={(e) => {
+          if (e.target.getLayer('locations')) {
+            const features = e.target.queryRenderedFeatures(e.point, { layers: ['locations'] });
+            e.target.getCanvas().style.cursor = features.length ? 'pointer' : '';
+          }
         }}
         viewport={store.viewport}
-        onViewportChange={(e) => {
-          return setViewport(e);
-        }}
+        onViewportChange={(e) => setViewport(e)}
       >
         <Control type="scale" position="bottom-left" />
         <Geocoder />
@@ -118,9 +143,7 @@ export function Map() {
             id: 'locations',
             type: 'vector',
             tiles: [
-              `${import.meta.env.VITE_TILES_URL}/{z}/{x}/{y}.pbf?apiKey=${
-                import.meta.env.VITE_TILES_API_KEY
-              }`,
+              `${import.meta.env.VITE_TILES_URL}`,
             ],
             minzoom: 1,
             maxzoom: 24,
@@ -180,12 +203,14 @@ export function Map() {
             id="locations"
             onClick={(e) => {
               const coordinates = getFeature(e);
-              e.target.flyTo({
-                center: coordinates,
-                zoom: e.target.getZoom() > 12 ? e.target.getZoom() : 12,
-                duration: calculateFlyToDuration(e.target.getZoom()),
-                essential: true,
-              });
+              if (coordinates) {
+                e.target.flyTo({
+                  center: coordinates,
+                  zoom: e.target.getZoom() > 12 ? e.target.getZoom() : 12,
+                  duration: calculateFlyToDuration(e.target.getZoom()),
+                  essential: true,
+                });
+              }
             }}
             style={{
               type: 'circle',
@@ -298,7 +323,6 @@ export function Map() {
                   '#6a5cd8',
                   '#7e8c9a',
                 ],
-
                 'circle-opacity': 1,
                 'circle-radius': [
                   'interpolate',
@@ -325,6 +349,13 @@ export function Map() {
         </Source>
         <Bounds />
       </MapGL>
+
+      {/* GradientOverlay positioned over the map */}
+      <GradientOverlay 
+        coords={selectedPoint()} 
+        onTimeChange={handleTimeChange}
+      />
+
       <div class="getting-started-link">
         <InfoIcon
           viewBox="0 0 25 25"
@@ -337,3 +368,5 @@ export function Map() {
     </div>
   );
 }
+
+export default Map;
