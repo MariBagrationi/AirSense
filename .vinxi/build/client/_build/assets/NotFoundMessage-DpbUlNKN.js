@@ -1,0 +1,1 @@
+import{b as e,i as t,t as s}from"./web-BP_Sm2kp.js";import{H as a}from"./HttpStatusCode-DjTx85av.js";var o=s("<section class=page-404><div class=bubble-lg></div><div class=bubble-sm></div><h1 class=type-heading-1>Uh oh! We can't find the page you've requested");function d(){return[e(a,{code:404}),t(o)]}export{d as N};

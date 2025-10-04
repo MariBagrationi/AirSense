@@ -1,0 +1,1 @@
+import{ssrElement as s,mergeProps as r,ssr as e}from"solid-js/web";var o='<path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224z"></path>';const p=(t={})=>s("svg",r({xmlns:"http://www.w3.org/2000/svg",width:"24",height:"24",viewBox:"0 -960 960 960"},t),()=>e(o),!0);export{p as C};

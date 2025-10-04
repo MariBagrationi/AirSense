@@ -1,0 +1,1 @@
+import{i as r,t as s,j as a,r as o}from"./web-BP_Sm2kp.js";var n=s('<svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 -960 960 960"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224z">');const p=(e={})=>(()=>{var t=r(n);return a(t,e,!0,!0),o(),t})();export{p as C};

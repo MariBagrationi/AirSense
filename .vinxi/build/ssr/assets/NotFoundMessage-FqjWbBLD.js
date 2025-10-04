@@ -1,0 +1,1 @@
+import{createComponent as e,ssr as s,ssrHydrationKey as t}from"solid-js/web";import{H as o}from"./HttpStatusCode-DH8IeaZe.js";var a=["<section",` class="page-404"><div class="bubble-lg"></div><div class="bubble-sm"></div><h1 class="type-heading-1">Uh oh! We can't find the page you've requested</h1></section>`];function n(){return[e(o,{code:404}),s(a,t())]}export{n as N};
