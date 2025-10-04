@@ -1,0 +1,57 @@
+@use 'openaq-design-system/scss/variables';
+@use 'openaq-design-system/scss/mixins/index.scss' as mixins;
+@use 'openaq-design-system/scss/buttons';
+@use 'openaq-design-system/scss/utilities';
+@use 'openaq-design-system/scss/inputs';
+@use 'openaq-design-system/scss/horizontal-rule';
+@use '~/assets/scss/components/header';
+
+html body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+* {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+svg {
+  text {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+.gradient-title {
+  background-color: variables.$lavender100;
+  background-image: linear-gradient(
+    92deg,
+    variables.$sky120 0%,
+    variables.$lavender100 10%
+  );
+  background-size: 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+::backdrop {
+  background-color: variables.$smoke180;
+  opacity: 0.75;
+}
+
+.button-reset {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.help-icon {
+  cursor: pointer;
+}
