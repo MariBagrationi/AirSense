@@ -1,8 +1,14 @@
-import { Component } from 'solid-js';
+import { Component, createResource, Show } from 'solid-js';
 import { useStore } from '~/stores';
+import { fetchApiInfo, fetchStats, fetchHealthStatus } from '~/lib/api';
 
 export const EnvironmentalControls: Component = () => {
-  const [store, { toggleAirQualityOverlay, setAirQualityOpacity }] = useStore();
+  const [store, { toggleAirQualityOverlay }] = useStore();
+
+  // Fetch API info and stats
+  const [apiInfo] = createResource(fetchApiInfo);
+  const [stats] = createResource(fetchStats);
+  const [healthStatus] = createResource(fetchHealthStatus);
 
   return (
     <div
@@ -51,31 +57,33 @@ export const EnvironmentalControls: Component = () => {
           <span style={{ 'font-weight': '500' }}>Air Quality Overlay</span>
         </label>
 
-        {store.showAirQualityOverlay && (
-          <div style={{ 'margin-left': '24px' }}>
-            <label
-              style={{
-                display: 'block',
-                'font-size': '12px',
-                color: '#666',
-                'margin-bottom': '4px',
-              }}
-            >
-              Opacity: {Math.round(store.airQualityOpacity * 100)}%
-            </label>
-            <input
-              type="range"
-              min="0.1"
-              max="1"
-              step="0.1"
-              value={store.airQualityOpacity}
-              onInput={(e) =>
-                setAirQualityOpacity(parseFloat(e.currentTarget.value))
-              }
-              style={{ width: '100%' }}
-            />
+        <Show when={store.showAirQualityOverlay}>
+          <div style={{ 'margin-left': '24px', 'font-size': '12px', color: '#666' }}>
+            <Show when={!healthStatus.loading && healthStatus()}>
+              <div style={{ 'margin-bottom': '4px', color: '#22c55e' }}>
+                ● API Connected
+              </div>
+            </Show>
+            <Show when={!healthStatus.loading && !healthStatus()}>
+              <div style={{ 'margin-bottom': '4px', color: '#ef4444' }}>
+                ● API Disconnected
+              </div>
+            </Show>
+            <Show when={!stats.loading && stats()?.success}>
+              <div style={{ 'margin-bottom': '2px' }}>
+                Total Records: {stats()?.data?.totalRecords || 0}
+              </div>
+              <div style={{ 'margin-bottom': '2px' }}>
+                Avg AQI: {stats()?.data?.avgAQI?.toFixed(1) || 'N/A'}
+              </div>
+              <Show when={stats()?.data?.timeRange}>
+                <div style={{ 'margin-bottom': '2px', 'font-size': '11px' }}>
+                  Data Range: {stats()?.data?.timeRange?.start || 'N/A'} to {stats()?.data?.timeRange?.end || 'N/A'}
+                </div>
+              </Show>
+            </Show>
           </div>
-        )}
+        </Show>
       </div>
 
       <div
@@ -87,7 +95,7 @@ export const EnvironmentalControls: Component = () => {
           'margin-top': '12px',
         }}
       >
-        Toggle overlays to visualize environmental data
+        Real-time environmental data from API
       </div>
     </div>
   );

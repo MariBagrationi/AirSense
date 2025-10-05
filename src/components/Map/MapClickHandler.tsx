@@ -2,6 +2,7 @@ import { Component, createEffect, createSignal, Show } from 'solid-js';
 import { useMapContext } from 'solid-map-gl';
 import { useStore } from '~/stores';
 import GradientOverlay from '../GradientOverlay';
+import Chatbot from '../Chatbot';
 
 interface MapClickHandlerProps {}
 
@@ -19,6 +20,7 @@ export const MapClickHandler: Component<MapClickHandlerProps> = () => {
     y: number;
   } | null>(null);
   const [hasMoved, setHasMoved] = createSignal(false);
+  const [showChatbot, setShowChatbot] = createSignal(true);
 
   createEffect(() => {
     if (!ctx?.map) return;
@@ -150,16 +152,21 @@ export const MapClickHandler: Component<MapClickHandlerProps> = () => {
   });
 
   return (
-    <Show when={state.showGradientOverlay}>
-      <GradientOverlay
-        coords={state.gradientCoords}
-        onTimeChange={(timeOffset: number) => {
-          // Update gradient time offset in store
-          setGradientTimeOffset(timeOffset);
-          console.log('Gradient time offset updated:', timeOffset);
-        }}
-      />
-    </Show>
+    <>
+      <Show when={state.showGradientOverlay}>
+        <GradientOverlay
+          coords={state.gradientCoords}
+          onTimeChange={(timeOffset: number) => {
+            // Update gradient time offset in store
+            setGradientTimeOffset(timeOffset);
+            console.log('Gradient time offset updated:', timeOffset);
+          }}
+        />
+      </Show>
+      <Show when={showChatbot()}>
+        <Chatbot onClose={() => setShowChatbot(false)} />
+      </Show>
+    </>
   );
 };
 

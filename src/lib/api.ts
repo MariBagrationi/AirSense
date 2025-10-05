@@ -23,6 +23,17 @@ export interface APIResponse<T> {
 
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
+export async function fetchApiInfo(): Promise<APIResponse<any>> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/`);
+    const data = await response.json();
+    return { success: true, data };
+  } catch (error) {
+    console.error('Failed to fetch API info:', error);
+    return { success: false, data: {}, error: 'Failed to fetch API info' };
+  }
+}
+
 export async function fetchHealthStatus(): Promise<boolean> {
   try {
     const response = await fetch(`${API_BASE_URL}/health`);
@@ -36,7 +47,7 @@ export async function fetchHealthStatus(): Promise<boolean> {
 
 export async function fetchGeoData(timestamp: string): Promise<APIResponse<GeoData[]>> {
   try {
-    const response = await fetch(`${API_BASE_URL}/data/geo?timestamp=${timestamp}`);
+    const response = await fetch(`${API_BASE_URL}/data?timestamp=${timestamp}`);
     const data = await response.json();
     return { success: true, data };
   } catch (error) {
