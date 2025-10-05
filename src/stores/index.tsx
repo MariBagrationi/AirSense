@@ -39,6 +39,10 @@ interface StoreParameters {
   // Map pin functionality
   mapPin: { latitude: number; longitude: number } | null;
   showMapPinDetails: boolean;
+  // Gradient overlay functionality
+  gradientCoords: { lat: number; lng: number } | null;
+  showGradientOverlay: boolean;
+  gradientTimeOffset: number;
 }
 
 type Store = [
@@ -82,6 +86,10 @@ type Store = [
     // Map pin actions
     setMapPin: (pin: { latitude: number; longitude: number } | null) => void;
     toggleMapPinDetails: (show?: boolean) => void;
+    // Gradient overlay actions
+    setGradientCoords: (coords: { lat: number; lng: number } | null) => void;
+    toggleGradientOverlay: (show?: boolean) => void;
+    setGradientTimeOffset: (offset: number) => void;
   },
 ];
 
@@ -128,11 +136,28 @@ export const StoreProvider: Component<{ children: any }> = (props) => {
     // Map pin functionality
     mapPin: null,
     showMapPinDetails: false,
+    // Gradient overlay functionality
+    gradientCoords: null,
+    showGradientOverlay: false,
+    gradientTimeOffset: 0,
   });
 
   const store = [
     state,
     {
+      // Gradient overlay actions
+      setGradientCoords(coords: { lat: number; lng: number } | null) {
+        setState({ gradientCoords: coords });
+      },
+      toggleGradientOverlay(show?: boolean) {
+        setState({
+          showGradientOverlay: show !== undefined ? show : !state.showGradientOverlay,
+        });
+      },
+      setGradientTimeOffset(offset: number) {
+        setState({ gradientTimeOffset: offset });
+      },
+      // Existing actions
       setSelectedLocationsId(locationsId: number) {
         setState({ locationsId: locationsId });
       },
@@ -197,7 +222,7 @@ export const StoreProvider: Component<{ children: any }> = (props) => {
       },
       updateRecentMeasurements(parameter: string, measurements: any) {
         const idx = state.recentMeasurements.findIndex(
-          (p) => p.parameter == parameter
+          (p: { parameter: string }) => p.parameter === parameter
         );
         const p = state.recentMeasurements[idx];
         p.setLoading(false);

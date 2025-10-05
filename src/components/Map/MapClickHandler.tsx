@@ -1,12 +1,19 @@
-import { Component, createEffect, createSignal } from 'solid-js';
+import { Component, createEffect, createSignal, Show } from 'solid-js';
 import { useMapContext } from 'solid-map-gl';
 import { useStore } from '~/stores';
+import GradientOverlay from '../GradientOverlay';
 
 interface MapClickHandlerProps {}
 
 export const MapClickHandler: Component<MapClickHandlerProps> = () => {
   const [ctx] = useMapContext();
-  const [state, { setMapPin, toggleMapPinDetails }] = useStore();
+  const [state, { 
+    setMapPin, 
+    toggleMapPinDetails, 
+    setGradientCoords, 
+    toggleGradientOverlay,
+    setGradientTimeOffset 
+  }] = useStore();
   const [mouseDownPosition, setMouseDownPosition] = createSignal<{
     x: number;
     y: number;
@@ -19,7 +26,7 @@ export const MapClickHandler: Component<MapClickHandlerProps> = () => {
     const map = ctx.map;
 
     // Mouse down handler to track initial position
-    const handleMouseDown = (e: any) => {
+    const handleMouseDown = (e: { point: { x: number; y: number } }) => {
       setHasMoved(false);
       // Store initial mouse position
       setMouseDownPosition({ x: e.point.x, y: e.point.y });
@@ -32,7 +39,7 @@ export const MapClickHandler: Component<MapClickHandlerProps> = () => {
     };
 
     // Mouse move handler to detect if user is panning
-    const handleMouseMove = (e: any) => {
+    const handleMouseMove = (e: { point: { x: number; y: number } }) => {
       const startPos = mouseDownPosition();
       if (startPos) {
         // Calculate distance moved from initial position
@@ -48,7 +55,7 @@ export const MapClickHandler: Component<MapClickHandlerProps> = () => {
     };
 
     // Handle single click event to place pin
-    const handleClick = (e: any) => {
+    const handleClick = (e: { lngLat: { lat: number; lng: number } }) => {
       // Only place pin if user didn't pan (moved less than 5 pixels)
       if (!hasMoved()) {
         console.log('Single click registered at:', e.lngLat);
@@ -57,7 +64,7 @@ export const MapClickHandler: Component<MapClickHandlerProps> = () => {
     };
 
     // Function to place pin at clicked location
-    const placePinAtLocation = (e: any) => {
+    const placePinAtLocation = (e: { lngLat: { lat: number; lng: number } }) => {
       // Remove existing pin if any
       if (map.getSource('map-pin')) {
         if (map.getLayer('map-pin-layer')) {
@@ -109,6 +116,13 @@ export const MapClickHandler: Component<MapClickHandlerProps> = () => {
         longitude: e.lngLat.lng,
       });
 
+      // Update gradient overlay
+      setGradientCoords({
+        lat: e.lngLat.lat,
+        lng: e.lngLat.lng
+      });
+      toggleGradientOverlay(true);
+
       toggleMapPinDetails(true);
     };
 
@@ -135,7 +149,18 @@ export const MapClickHandler: Component<MapClickHandlerProps> = () => {
     };
   });
 
-  return null; // This component doesn't render any DOM elements
+  return (
+    <Show when={state.showGradientOverlay}>
+      <GradientOverlay
+        coords={state.gradientCoords}
+        onTimeChange={(timeOffset: number) => {
+          // Update gradient time offset in store
+          setGradientTimeOffset(timeOffset);
+          console.log('Gradient time offset updated:', timeOffset);
+        }}
+      />
+    </Show>
+  );
 };
 
 export default MapClickHandler;
