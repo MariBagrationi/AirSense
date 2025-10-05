@@ -1,4 +1,5 @@
-import { createSignal, type Component, Show } from "solid-js";
+import { createSignal, type Component, Show, createEffect, createResource } from "solid-js";
+import { fetchGeoData, type GeoData } from "~/lib/api";
 
 interface Coords {
   lat: number;
@@ -9,6 +10,13 @@ interface GradientOverlayProps {
   coords: Coords | null;
   onTimeChange?: (timeOffset: number) => void;
 }
+
+// Format timestamp for API requests
+const formatTimestamp = (offset: number): string => {
+  const date = new Date();
+  date.setHours(date.getHours() + offset);
+  return date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+};
 
 // Time offsets to generate predictions for (in hours from now)
 const TIME_OFFSETS = [0, 3, 6, 12, 24];
@@ -22,22 +30,46 @@ const AQI_COLORS = [
   { max: Infinity, color: "rgba(128,0,128,0.8)", label: "Hazardous" }
 ] as const;
 
-const calculateAQI = (coords: Coords, timeOffset: number): number => {
-  // Simulated AQI calculation based on location and time
-  const baseAQI = (Math.sin(coords.lat * 0.1) + Math.cos(coords.lng * 0.1)) * 100 + 100;
-  const timeVariation = Math.sin(timeOffset * Math.PI / 24) * 30; // Daily cycle
-  return Math.max(0, Math.min(500, Math.floor(baseAQI + timeVariation + (timeOffset * 2))));
-};
-
 const GradientOverlay: Component<GradientOverlayProps> = (props) => {
   const [timeIndex, setTimeIndex] = createSignal(0);
   const [isDragging, setIsDragging] = createSignal(false);
   let startX = 0;
   let overlayRef: HTMLDivElement | null = null;
 
+  // Create a resource for fetching AQI data
+  const [aqiData] = createResource(
+    () => ({
+      timestamp: formatTimestamp(TIME_OFFSETS[timeIndex()]),
+      coords: props.coords
+    }),
+    async ({ timestamp, coords }) => {
+      if (!coords) return null;
+      const response = await fetchGeoData(timestamp);
+      if (!response.success) return null;
+
+      // Find the closest data point to our coordinates
+      const data = response.data.reduce((closest: GeoData | null, current: GeoData) => {
+        const currentDist = Math.sqrt(
+          Math.pow(current.location.lat - coords.lat, 2) + 
+          Math.pow(current.location.lng - coords.lng, 2)
+        );
+        if (!closest) return current;
+        
+        const closestDist = Math.sqrt(
+          Math.pow(closest.location.lat - coords.lat, 2) + 
+          Math.pow(closest.location.lng - coords.lng, 2)
+        );
+        
+        return currentDist < closestDist ? current : closest;
+      }, null);
+
+      return data;
+    }
+  );
+
   const currentAQI = () => {
-    if (!props.coords) return null;
-    return calculateAQI(props.coords, TIME_OFFSETS[timeIndex()]);
+    const data = aqiData();
+    return data?.aqi ?? null;
   };
 
   const gradientColor = () => {
@@ -127,7 +159,9 @@ const GradientOverlay: Component<GradientOverlayProps> = (props) => {
           }}
         >
           <div style={{ "display": "flex", "align-items": "center", "gap": "10px" }}>
-            <span>AQI: {currentAQI()}</span>
+            <span>
+              AQI: {aqiData.loading ? "..." : currentAQI()}
+            </span>
             <span style={{
               "font-size": "0.7em",
               "opacity": "0.9",
@@ -141,6 +175,20 @@ const GradientOverlay: Component<GradientOverlayProps> = (props) => {
           <div style={{ "font-size": "0.8em", "opacity": "0.7", "margin-top": "4px" }}>
             {TIME_OFFSETS[timeIndex()] === 0 ? "Current" : `+${TIME_OFFSETS[timeIndex()]}h`}
           </div>
+          <Show when={!aqiData.loading && aqiData()?.pollutants}>
+            <div style={{ "font-size": "0.7em", "opacity": "0.7", "margin-top": "4px" }}>
+              {(() => {
+                const pollutants = aqiData()?.pollutants;
+                if (!pollutants) return null;
+                const parts = [];
+                if (pollutants.pm25) parts.push(`PM2.5: ${pollutants.pm25}`);
+                if (pollutants.pm10) parts.push(`PM10: ${pollutants.pm10}`);
+                if (pollutants.o3) parts.push(`O₃: ${pollutants.o3}`);
+                if (pollutants.no2) parts.push(`NO₂: ${pollutants.no2}`);
+                return parts.join(', ');
+              })()}
+            </div>
+          </Show>
           <div style={{ "font-size": "0.7em", "opacity": "0.6", "margin-top": "4px" }}>
             {`${props.coords!.lat.toFixed(3)}°, ${props.coords!.lng.toFixed(3)}°`}
           </div>
