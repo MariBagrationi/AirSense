@@ -1,10 +1,10 @@
 /* Map Pin Side Popup Styles */
 .map-pin-side-popup {
   position: fixed;
-  top: 80px;
+  bottom: 100px;
   right: 20px;
   width: 320px;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 140px);
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -16,11 +16,11 @@
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translate(100%, 20px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate(0, 0);
   }
 }
 
@@ -211,11 +211,11 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .map-pin-side-popup {
-    top: 60px;
+    bottom: 90px;
     right: 10px;
     left: 10px;
     width: auto;
-    max-height: calc(100vh - 80px);
+    max-height: calc(100vh - 120px);
   }
   
   .map-pin-popup-content {

@@ -7,7 +7,6 @@ import { useStore } from '~/stores';
 import { createEffect } from 'solid-js';
 import { generateMockAirQualityData } from '~/data/environmental';
 import AirQualityInfoOverlay from '../AirQualityInfoOverlay';
-import { Geocoder } from '../Geocoder';
 import MapPinSidePopup from '../MapPinSidePopup';
 import { AirQualityLegend, AirQualityOverlay } from './AirQualityOverlay';
 import { EnvironmentalControls } from './EnvironmentalControls';
@@ -109,7 +108,6 @@ export function Map() {
         }}
       >
         <Control type="scale" position="bottom-left" />
-        <Geocoder />
 
         <Control
           type="navigation"
