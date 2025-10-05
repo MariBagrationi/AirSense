@@ -11,7 +11,7 @@ import { Geocoder } from '../Geocoder';
 import MapPinSidePopup from '../MapPinSidePopup';
 import { AirQualityLegend, AirQualityOverlay } from './AirQualityOverlay';
 import { EnvironmentalControls } from './EnvironmentalControls';
-import MapLongClickHandler from './MapLongClickHandler';
+import MapClickHandler from './MapClickHandler';
 
 import '~/assets/scss/components/map.scss';
 
@@ -335,7 +335,7 @@ export function Map() {
         />
 
         {/* Map Long Click Handler for Pin Placement */}
-        <MapLongClickHandler />
+        <MapClickHandler />
 
         <Bounds />
       </MapGL>
