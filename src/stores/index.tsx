@@ -1,4 +1,4 @@
-import { createContext, useContext, Component } from 'solid-js';
+import { Component, createContext, useContext } from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { Viewport } from 'solid-map-gl';
 
@@ -30,6 +30,15 @@ interface StoreParameters {
   showNotificationCard: boolean;
   showHelpCard: boolean;
   helpContent: string;
+  // Environmental overlay controls
+  showAirQualityOverlay: boolean;
+  airQualityOpacity: number;
+  // Air quality data point overlay
+  selectedAirQualityPoint: any | null;
+  showAirQualityDetails: boolean;
+  // Map pin functionality
+  mapPin: { latitude: number; longitude: number } | null;
+  showMapPinDetails: boolean;
 }
 
 type Store = [
@@ -38,8 +47,8 @@ type Store = [
     setSelectedLocationsId: (locationsId: number) => void;
     clearLocationsId: () => void;
     setSelectedMapParameter: (mapParameter: string) => void;
-    setDeleteListsId: () => void;
-    setDeleteListLocationsId: () => void;
+    setDeleteListsId: (listsId: number) => void;
+    setDeleteListLocationsId: (listLocationsId: number) => void;
     setListParametersId: (parametersId: number) => void;
     setListParameter: (parameter: string) => void;
     clearDeleteListsId: () => void;
@@ -54,27 +63,38 @@ type Store = [
     toggleAirSensor: () => void;
     toggleMapIsActive: () => void;
     setProviders: (providers: any[]) => void;
-    setRecentMeasurements: () => void;
-    addRecentMeasurements: () => void;
-    updateRecentMeasurements: (parameter: string, measurements) => void;
-    setTotalProviders: () => void;
+    setRecentMeasurements: (measurements: any[]) => void;
+    addRecentMeasurements: (measurements: any) => void;
+    updateRecentMeasurements: (parameter: string, measurements: any) => void;
+    setTotalProviders: (totalProviders: number) => void;
     openToast: () => void;
     setBounds: (bounds: number[]) => void;
     setMapBbox: (mapBbox: number[]) => void;
     toggleShowNotificationCard: (value: boolean) => void;
     toggleShowHelpCard: (value: boolean) => void;
     setHelpContent: (content: string) => void;
+    // Environmental overlay actions
+    toggleAirQualityOverlay: () => void;
+    setAirQualityOpacity: (opacity: number) => void;
+    // Air quality data point actions
+    setSelectedAirQualityPoint: (point: any | null) => void;
+    toggleAirQualityDetails: (show?: boolean) => void;
+    // Map pin actions
+    setMapPin: (pin: { latitude: number; longitude: number } | null) => void;
+    toggleMapPinDetails: (show?: boolean) => void;
   },
 ];
 
 const StoreContext = createContext<Store>();
 
-export const StoreProvider: Component<{}> = (props) => {
-  const [state, setState] = createStore({
+export const StoreProvider: Component<{ children: any }> = (props) => {
+  const [state, setState] = createStore<StoreParameters>({
     locationsId: undefined,
     mapParameter: 'all',
     listsId: undefined,
     listLocationsId: undefined,
+    listParametersId: undefined,
+    listParameter: undefined,
     newListModalOpen: false,
     deleteListModalOpen: false,
     deleteLocationModalOpen: false,
@@ -84,21 +104,30 @@ export const StoreProvider: Component<{}> = (props) => {
     viewport: {
       zoom: 1.2,
       center: [40, 20],
-    },
+    } as Viewport,
     showOnlyActiveLocations: true,
     showAirSensors: true,
     showMonitors: true,
     totalProviders: 0,
-    providers: [],
-    recentMeasurements: [],
+    providers: [] as any[],
+    recentMeasurements: [] as any[],
     toastOpen: false,
     apiKeyRegenerateModalOpen: false,
-    listParametersId: undefined,
-    bounds: [],
-    mapBbox: [],
+    passwordChangeModalOpen: false,
+    bounds: [] as number[],
+    mapBbox: [] as number[],
     showNotificationCard: false,
     showHelpCard: false,
     helpContent: '',
+    // Environmental overlay initial state
+    showAirQualityOverlay: false,
+    airQualityOpacity: 0.7,
+    // Air quality data point overlay
+    selectedAirQualityPoint: null,
+    showAirQualityDetails: false,
+    // Map pin functionality
+    mapPin: null,
+    showMapPinDetails: false,
   });
 
   const store = [
@@ -151,22 +180,22 @@ export const StoreProvider: Component<{}> = (props) => {
           showOnlyActiveLocations: !state.showOnlyActiveLocations,
         });
       },
-      setProviders(providers) {
+      setProviders(providers: any[]) {
         setState({ providers: providers });
       },
       setTotalProviders(totalProviders: number) {
         setState({ totalProviders: totalProviders });
       },
-      setRecentMeasurements(measurements) {
+      setRecentMeasurements(measurements: any[]) {
         setState({ recentMeasurements: measurements });
       },
-      addRecentMeasurements(measurements) {
-        setState('recentMeasurements', (prevList) => [
+      addRecentMeasurements(measurements: any) {
+        setState('recentMeasurements', (prevList: any[]) => [
           ...prevList,
           measurements,
         ]);
       },
-      updateRecentMeasurements(parameter: string, measurements) {
+      updateRecentMeasurements(parameter: string, measurements: any) {
         const idx = state.recentMeasurements.findIndex(
           (p) => p.parameter == parameter
         );
@@ -206,11 +235,38 @@ export const StoreProvider: Component<{}> = (props) => {
       setHelpContent(content: string) {
         setState({ helpContent: content });
       },
+      // Environmental overlay actions
+      toggleAirQualityOverlay() {
+        setState({ showAirQualityOverlay: !state.showAirQualityOverlay });
+      },
+      setAirQualityOpacity(opacity: number) {
+        setState({ airQualityOpacity: opacity });
+      },
+      // Air quality data point actions
+      setSelectedAirQualityPoint(point: any | null) {
+        setState({ selectedAirQualityPoint: point });
+      },
+      toggleAirQualityDetails(show?: boolean) {
+        setState({
+          showAirQualityDetails:
+            show !== undefined ? show : !state.showAirQualityDetails,
+        });
+      },
+      // Map pin actions
+      setMapPin(pin: { latitude: number; longitude: number } | null) {
+        setState({ mapPin: pin });
+      },
+      toggleMapPinDetails(show?: boolean) {
+        setState({
+          showMapPinDetails:
+            show !== undefined ? show : !state.showMapPinDetails,
+        });
+      },
     },
   ];
 
   return (
-    <StoreContext.Provider value={store}>
+    <StoreContext.Provider value={store as Store}>
       {props.children}
     </StoreContext.Provider>
   );

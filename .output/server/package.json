@@ -110,7 +110,7 @@
     "trough": "2.2.0",
     "unified": "11.0.5",
     "unist-util-find": "1.0.4",
-    "unist-util-is": "6.0.0",
+    "unist-util-is": "4.1.0",
     "unist-util-position": "5.0.0",
     "unist-util-stringify-position": "4.0.0",
     "unist-util-visit": "5.0.0",

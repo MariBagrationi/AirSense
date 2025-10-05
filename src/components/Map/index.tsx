@@ -1,15 +1,19 @@
 /* eslint-disable solid/style-prop */
-import MapGL, { Source, Layer, Control } from 'solid-map-gl';
-import { useMapContext } from 'solid-map-gl';
 import * as maplibre from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import MapGL, { Control, Layer, Source, useMapContext } from 'solid-map-gl';
 import { useStore } from '~/stores';
 
+import { createEffect } from 'solid-js';
+import { generateMockAirQualityData } from '~/data/environmental';
+import AirQualityInfoOverlay from '../AirQualityInfoOverlay';
 import { Geocoder } from '../Geocoder';
-import { createEffect, createSignal } from 'solid-js';
+import MapPinSidePopup from '../MapPinSidePopup';
+import { AirQualityLegend, AirQualityOverlay } from './AirQualityOverlay';
+import { EnvironmentalControls } from './EnvironmentalControls';
+import MapLongClickHandler from './MapLongClickHandler';
 
 import '~/assets/scss/components/map.scss';
-import InfoIcon from '~/assets/imgs/svgs/info.svg';
 
 function calculateFlyToDuration(zoom: number) {
   return 2500 / (zoom / 5);
@@ -75,6 +79,9 @@ export function Map() {
 
   return (
     <div class="map-container">
+      <EnvironmentalControls />
+      <AirQualityLegend visible={store.showAirQualityOverlay} />
+
       <MapGL
         class="map"
         mapLib={maplibre}
@@ -88,11 +95,13 @@ export function Map() {
           hash: true,
           attributionControl: false,
         }}
-        onMouseOver={{
-          locations: (e) => (e.target.getCanvas().style.cursor = 'pointer'),
+        onMouseOver={(e: any) => {
+          if (e.features?.length > 0 && e.features[0].source === 'locations') {
+            e.target.getCanvas().style.cursor = 'pointer';
+          }
         }}
-        onMouseLeave={{
-          locations: (e) => (e.target.getCanvas().style.cursor = ''),
+        onMouseLeave={(e: any) => {
+          e.target.getCanvas().style.cursor = '';
         }}
         viewport={store.viewport}
         onViewportChange={(e) => {
@@ -101,13 +110,7 @@ export function Map() {
       >
         <Control type="scale" position="bottom-left" />
         <Geocoder />
-        <Control
-          type="attribution"
-          position="bottom-right"
-          options={{
-            customAttribution: `© <a href="https://geocode.earth">Geocode Earth</a>, Powered by <a href="https://protomaps.com">Protomaps</a>`,
-          }}
-        />
+
         <Control
           type="navigation"
           position="bottom-left"
@@ -323,17 +326,25 @@ export function Map() {
             }}
           />
         </Source>
+
+        {/* Environmental Overlays */}
+        <AirQualityOverlay
+          data={generateMockAirQualityData([20, 0, 60, 50], 50)}
+          visible={store.showAirQualityOverlay}
+          opacity={store.airQualityOpacity}
+        />
+
+        {/* Map Long Click Handler for Pin Placement */}
+        <MapLongClickHandler />
+
         <Bounds />
       </MapGL>
-      <div class="getting-started-link">
-        <InfoIcon
-          viewBox="0 0 25 25"
-          role="img"
-          aria-label="Info Icon"
-          class="info-icon"
-        />
-        <a href="/getting-started">Learn how to use the Explorer</a>
-      </div>
+
+      {/* Air Quality Info Overlay */}
+      <AirQualityInfoOverlay />
+
+      {/* Map Pin Side Popup */}
+      <MapPinSidePopup />
     </div>
   );
 }

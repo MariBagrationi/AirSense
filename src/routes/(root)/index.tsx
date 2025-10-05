@@ -1,14 +1,13 @@
-import { Map } from '~/components/Map';
-import { LocationDetailCard } from '~/components/Cards/LocationDetailCard';
-import { FlipCard } from '~/components/Cards/FlipCard';
-import { clientOnly } from '@solidjs/start';
-import '~/assets/scss/routes/index.scss';
 import { useLocation, useNavigate } from '@solidjs/router';
-import { useStore } from '~/stores';
-import { createEffect, createMemo, onMount, Show } from 'solid-js';
-import content from '~/content/notification.md?raw';
+import { clientOnly } from '@solidjs/start';
 import MD5 from 'crypto-js/md5';
+import { createEffect, createMemo, onMount, Show } from 'solid-js';
+import '~/assets/scss/routes/index.scss';
+import { LocationDetailCard } from '~/components/Cards/LocationDetailCard';
 import { parseNotificationMarkdown } from '~/components/Cards/utils';
+import { Map } from '~/components/Map';
+import content from '~/content/notification.md?raw';
+import { useStore } from '~/stores';
 
 export default function Home() {
   const showNotification = JSON.parse(
@@ -148,7 +147,6 @@ export default function Home() {
       }
       <HelpCard content={store.helpContent} title="Help" />
       <Map />
-      <FlipCard />
       <LocationDetailCard />
     </>
   );

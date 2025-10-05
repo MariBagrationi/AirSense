@@ -5,6 +5,8 @@
 @use 'openaq-design-system/scss/inputs';
 @use 'openaq-design-system/scss/horizontal-rule';
 @use '~/assets/scss/components/header';
+@use '../../components/AirQualityInfoOverlay/styles.scss' as air-quality-info;
+@use '../../components/MapPinSidePopup/styles.scss' as map-pin-popup;
 
 html body {
   margin: 0;
