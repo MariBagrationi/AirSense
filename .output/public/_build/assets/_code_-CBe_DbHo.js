@@ -1,1 +1,0 @@
-import{v as e}from"./user-DPU6oxOF.js";import{j as t}from"./routing-DE3KDVov.js";import{c as o}from"./createAsync-CxGUhFbC.js";import"./utc-B-W9tmtl.js";import"./web-BP_Sm2kp.js";function c(){const{code:r}=t();return o(()=>e(r),{deferStream:!0}),[]}export{c as default};
