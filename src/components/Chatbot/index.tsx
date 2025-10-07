@@ -1,4 +1,6 @@
 import { createSignal, For, Show, type Component } from "solid-js";
+import { sendChatMessage } from "~/lib/api";
+import "./chatbot.css";
 
 interface Message {
   id: string;
@@ -22,11 +24,12 @@ const Chatbot: Component<ChatbotProps> = (props) => {
   ]);
   const [inputText, setInputText] = createSignal("");
   const [isMinimized, setIsMinimized] = createSignal(false);
+  const [isLoading, setIsLoading] = createSignal(false);
   let messagesContainer: HTMLDivElement | undefined;
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     const text = inputText().trim();
-    if (!text) return;
+    if (!text || isLoading()) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -37,22 +40,7 @@ const Chatbot: Component<ChatbotProps> = (props) => {
 
     setMessages(prev => [...prev, userMessage]);
     setInputText("");
-
-    // Simulate bot response (you'll replace this with actual API call)
-    setTimeout(() => {
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: "Thanks for your message! I'm still learning. In the future, I'll be able to help you with detailed air quality information and analysis.",
-        isUser: false,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, botMessage]);
-      
-      // Scroll to bottom
-      if (messagesContainer) {
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-      }
-    }, 1000);
+    setIsLoading(true);
 
     // Scroll to bottom
     setTimeout(() => {
@@ -60,10 +48,49 @@ const Chatbot: Component<ChatbotProps> = (props) => {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
       }
     }, 100);
+
+    try {
+      // Call the real health-advice API
+      const response = await sendChatMessage(text);
+      
+      let botResponse: string;
+      if (response.success && response.data) {
+        botResponse = response.data.recommendation || response.data.status || "I received your message but couldn't generate a proper response.";
+      } else {
+        botResponse = response.error || "Sorry, I'm having trouble connecting to the server. Please try again later.";
+      }
+
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: botResponse,
+        isUser: false,
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "Sorry, I encountered an error while processing your message. Please try again.",
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+      
+      // Scroll to bottom
+      setTimeout(() => {
+        if (messagesContainer) {
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+      }, 100);
+    }
   };
 
   const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey && !isLoading()) {
       e.preventDefault();
       sendMessage();
     }
@@ -221,6 +248,40 @@ const Chatbot: Component<ChatbotProps> = (props) => {
               </div>
             )}
           </For>
+          
+          {/* Loading indicator */}
+          <Show when={isLoading()}>
+            <div
+              style={{
+                display: "flex",
+                "flex-direction": "column",
+                "margin-bottom": "12px",
+                "align-items": "flex-start"
+              }}
+            >
+              <div
+                style={{
+                  "max-width": "80%",
+                  padding: "8px 12px",
+                  "border-radius": "16px 16px 16px 4px",
+                  background: "#f1f5f9",
+                  color: "#334155",
+                  "font-size": "14px",
+                  "line-height": "1.4",
+                  display: "flex",
+                  "align-items": "center",
+                  gap: "6px"
+                }}
+              >
+                <div style={{ display: "flex", gap: "3px" }}>
+                  <div class="typing-dot" style={{ "animation-delay": "0s" }} />
+                  <div class="typing-dot" style={{ "animation-delay": "0.2s" }} />
+                  <div class="typing-dot" style={{ "animation-delay": "0.4s" }} />
+                </div>
+                <span>Assistant is thinking...</span>
+              </div>
+            </div>
+          </Show>
         </div>
 
         {/* Input */}
@@ -250,22 +311,23 @@ const Chatbot: Component<ChatbotProps> = (props) => {
           />
           <button
             onClick={sendMessage}
-            disabled={!inputText().trim()}
+            disabled={!inputText().trim() || isLoading()}
             style={{
               padding: "8px 16px",
-              background: inputText().trim()
+              background: (inputText().trim() && !isLoading())
                 ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
                 : "#d1d5db",
               color: "white",
               border: "none",
               "border-radius": "20px",
-              cursor: inputText().trim() ? "pointer" : "not-allowed",
+              cursor: (inputText().trim() && !isLoading()) ? "pointer" : "not-allowed",
               "font-size": "14px",
               "font-weight": "500",
-              transition: "background 0.2s ease"
+              transition: "background 0.2s ease",
+              "min-width": "60px"
             }}
           >
-            Send
+            {isLoading() ? "..." : "Send"}
           </button>
         </div>
       </Show>

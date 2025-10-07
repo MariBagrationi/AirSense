@@ -3,15 +3,22 @@
 @use 'openaq-design-system/scss/header';
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
   padding: 0 40px;
   z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .header-contents {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
+  height: 50px;
 }
 
 .spacer {
@@ -173,7 +180,7 @@
 }
 
 @media (max-width: 1000px) {
-  $header-height: 60px;
+  $header-height: 80px;
 
   .mobile-account-actions {
     display: flex;

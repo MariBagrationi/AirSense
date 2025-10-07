@@ -21,7 +21,7 @@ export interface APIResponse<T> {
   error?: string;
 }
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = 'http://localhost:8000';
 
 export async function fetchApiInfo(): Promise<APIResponse<any>> {
   try {
@@ -87,6 +87,110 @@ export async function fetchStats(): Promise<APIResponse<{
       success: false,
       data: { timeRange: { start: '', end: '' }, totalRecords: 0, avgAQI: 0 },
       error: 'Failed to fetch stats'
+    };
+  }
+}
+
+// Chatbot API interfaces
+export interface HealthQuery {
+  question: string;
+  context_variables?: { [key: string]: any } | null;
+  user_id?: string | null;
+}
+
+export interface HealthResponse {
+  status: string;
+  recommendation: string;
+  response_type: string;
+  user_id?: string | null;
+  processing_info?: { [key: string]: any } | null;
+}
+
+// Chatbot API functions
+export async function sendChatMessage(message: string, userId?: string): Promise<APIResponse<HealthResponse>> {
+  try {
+    const body: HealthQuery = {
+      question: message,
+      user_id: userId || null
+    };
+
+    console.log('Sending request to:', `${API_BASE_URL}/health-advice`);
+    console.log('Request body:', body);
+
+    const response = await fetch(`${API_BASE_URL}/health-advice`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    console.log('Response received:');
+    console.log('- Status:', response.status);
+    console.log('- Status Text:', response.statusText);
+    console.log('- OK:', response.ok);
+    console.log('- Headers:', Object.fromEntries(response.headers.entries()));
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.log('Error response body:', errorText);
+      throw new Error(`HTTP ${response.status}: ${response.statusText} - ${errorText}`);
+    }
+
+    const data: HealthResponse = await response.json();
+    console.log('Success! Response data:', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('❌ API ERROR DETAILS:');
+    console.error('Error type:', error instanceof Error ? error.constructor.name : typeof error);
+    console.error('Error message:', error instanceof Error ? error.message : 'Unknown error');
+    console.error('Full error object:', error);
+    
+    // Check for specific error types
+    let errorMessage = 'Failed to send chat message';
+    if (error instanceof TypeError) {
+      if (error.message.includes('fetch')) {
+        errorMessage = 'Network error: Unable to connect to API server. Check if the server is running on localhost:8000';
+      } else if (error.message.includes('CORS')) {
+        errorMessage = 'CORS error: API server needs to allow requests from localhost:3001';
+      }
+    } else if (error instanceof Error) {
+      errorMessage = `API Error: ${error.message}`;
+    }
+    
+    return {
+      success: false,
+      data: {
+        status: 'error',
+        recommendation: errorMessage,
+        response_type: 'error'
+      },
+      error: errorMessage
+    };
+  }
+}
+
+export async function sendQuickChatMessage(question: string): Promise<APIResponse<string>> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/quick-advice?question=${encodeURIComponent(question)}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.text();
+    return { success: true, data };
+  } catch (error) {
+    console.error('Failed to send quick chat message:', error);
+    return {
+      success: false,
+      data: 'Sorry, I\'m having trouble connecting to the server. Please try again later.',
+      error: 'Failed to send quick chat message'
     };
   }
 }
